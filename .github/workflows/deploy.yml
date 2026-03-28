@@ -4,6 +4,9 @@ on:
   push:
     branches: ["main"]
 
+permissions:
+  contents: write # ✅ IMPORTANT
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -17,9 +20,6 @@ jobs:
         with:
           node-version: 18
 
-      - name: Show Node Version
-        run: node -v
-
       - name: Install Dependencies
         run: npm install
 
@@ -29,7 +29,6 @@ jobs:
       - name: Build Project
         run: npm run build
 
-      # ✅ REAL DEPLOYMENT STEP
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
