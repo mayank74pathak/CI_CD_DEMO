@@ -29,8 +29,12 @@ jobs:
       - name: Build Project
         run: npm run build
 
-      - name: Deploy Project
-        run: npm run deploy
+      # ✅ REAL DEPLOYMENT STEP
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./
 
       - name: Success Message
-        run: echo "Build Successful 🎉"
+        run: echo "CI/CD Pipeline Successful 🎉"
